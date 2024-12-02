@@ -1,0 +1,361 @@
+import 'dart:developer';
+import 'dart:isolate';
+import 'dart:math' as math;
+
+import 'package:bizhub/widgets/button.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_isolate/flutter_isolate.dart';
+import 'package:uuid/uuid.dart';
+
+class BizhubFetchError {
+  final String id;
+  final Future Function() onRefresh;
+  final String? message;
+  const BizhubFetchError({
+    required this.id,
+    required this.onRefresh,
+    this.message,
+  });
+}
+
+class BizhubFetchErrors extends StatefulWidget {
+  final Widget child;
+  const BizhubFetchErrors({Key? key, required this.child}) : super(key: key);
+
+  @override
+  State<BizhubFetchErrors> createState() => _BizhubFetchErrorsState();
+
+  static error(BuildContext context,
+      {required Future Function() onRefresh, String? message}) {
+    // context.findAncestorStateOfType<_BizhubFetchErrorsState>()?.onError(
+    //       onRefresh: onRefresh,
+    //       message: message,
+    //     );
+  }
+}
+
+@pragma('vm:entry-point')
+void simpleIsolate(SendPort port) {
+  log("isolate: $port");
+  final receivePort = ReceivePort();
+  receivePort.listen((m) {
+    if (m is BizhubFetchErrorsAsImmutable) {
+      port.send(m);
+    }
+  });
+  port.send(receivePort.sendPort);
+}
+
+@pragma('vm:entry-point')
+void tryAgainAsIsolateCallback(dynamic port) {
+  if (port == null) {
+    log("port: null");
+    return;
+  }
+  port = port as SendPort;
+  log("isolate: started");
+  final iPort = ReceivePort();
+  final iSendPort = iPort.sendPort;
+  log("isolate: send port");
+  port.send(iSendPort);
+  iPort.listen((message) async {
+    if (message is BizhubFetchErrorsAsImmutable) {
+      log("isolate: listen(message) as List<BizhubFetchError>: $message");
+
+      try {
+        // await Future.wait(message.errors.map((e) => e.onRefresh()));
+        Isolate.exit(port, true);
+      } catch (err) {
+        Isolate.exit(port, false);
+      }
+    }
+  });
+}
+
+@immutable
+class BizhubFetchErrorsAsImmutable {
+  final List<String> errors;
+  const BizhubFetchErrorsAsImmutable(this.errors);
+}
+
+class _BizhubFetchErrorsState extends State<BizhubFetchErrors> {
+  Map<int, List<BizhubFetchError>> errors = {};
+  int errorGroupId = 1;
+  String recentErrorMessage = "...";
+  bool loading = false;
+  bool show = false;
+
+  @override
+  void initState() {
+    super.initState();
+    errors[errorGroupId] = [];
+  }
+
+  void clearAll() {}
+
+  Future tryAgain_() async {
+    final List<BizhubFetchError>? errors_ = errors[errorGroupId];
+    final int errorGroupId_ = errorGroupId;
+    if (errors_ == null) {
+      return;
+    }
+    setState(() {
+      errorGroupId = errorGroupId + 1;
+      errors.addAll({
+        errorGroupId: [],
+      });
+      loading = true;
+    });
+
+    final receivePort = ReceivePort();
+    final sendPort = receivePort.sendPort;
+
+    int ongoingErrorsCount = 0;
+    int executedErrors = 0;
+    receivePort.listen((message) {
+      if (message is Map<String, dynamic>) {
+        if ((errors_.indexWhere(
+                (element) => element.id == message["id"] as String)) !=
+            -1) {
+          executedErrors++;
+          if (message["status"] as bool) ongoingErrorsCount++;
+        }
+        if (executedErrors == errors_.length) {
+          if (executedErrors != ongoingErrorsCount) {
+            setState(() {
+              loading = false;
+            });
+            return;
+          }
+
+          setState(() {
+            errors.remove(errorGroupId_);
+          });
+          if (errors.isEmpty) {
+            setState(() {
+              show = false;
+              loading = false;
+            });
+          } else {
+            receivePort.close();
+            tryAgain();
+          }
+        }
+      }
+    });
+
+    for (var element in errors_) {
+      // @pragma('vm:entry-point')
+      final isolate = await Isolate.spawn(
+        (sendPort) async {
+          try {
+            await element.onRefresh();
+            // Isolate.exit(sendPort, {'id': element.id, 'status': true});
+          } catch (err) {
+            // Isolate.exit(sendPort, {'id': element.id, 'status': false});
+          }
+        },
+        null,
+      );
+      // await compute<SendPort, bool>((SendPort sendPort) async {
+
+      // }, sendPort);
+    }
+  }
+
+  Future tryAgain() async {
+    final List<BizhubFetchError>? errors_ = errors[errorGroupId];
+    final int errorGroupId_ = errorGroupId;
+    if (errors_ == null) {
+      return;
+    }
+
+    final receivePort = ReceivePort();
+    receivePort.listen((m) {
+      log("receivePort: $m");
+      if (m is SendPort) {
+        m.send(const BizhubFetchErrorsAsImmutable(["hi", "hello"]));
+      }
+    });
+    compute<SendPort, dynamic>(simpleIsolate, receivePort.sendPort);
+  }
+
+  Future tryAgaiN_() async {
+    final List<BizhubFetchError>? errors_ = errors[errorGroupId];
+    final int errorGroupId_ = errorGroupId;
+    if (errors_ == null) {
+      return;
+    }
+
+    log("loading: true");
+    setState(() {
+      errorGroupId = errorGroupId + 1;
+      errors.addAll({
+        errorGroupId: [],
+      });
+      loading = true;
+    });
+
+    final port = ReceivePort();
+    SendPort? iPort;
+
+    log("spawn: callback");
+
+    log("port: listen");
+    port.listen(
+      (dynamic message) async {
+        if (message is bool) {
+          if (message == true) {
+            log("message: true");
+
+            setState(() {
+              errors.remove(errorGroupId_);
+            });
+            if (errors.isEmpty) {
+              setState(() {
+                show = false;
+                loading = false;
+              });
+            } else {
+              tryAgain();
+            }
+          } else {
+            log("loading: false");
+            setState(() {
+              loading = false;
+            });
+          }
+        } else if (message is SendPort) {
+          log("message: SendPort");
+          iPort = message;
+          if (iPort != null) {
+            log("send: errors_ $iPort");
+            // iPort!.send(BizhubFetchErrorsAsImmutable(errors_));
+          } else {
+            port.sendPort.send(true);
+          }
+        }
+      },
+    );
+
+    FlutterIsolate.spawn<dynamic>(tryAgainAsIsolateCallback, port.sendPort)
+        .catchError((
+      error,
+    ) {
+      log("isolate err: $error");
+    });
+
+    log("spawn: callback end.");
+  }
+
+  void onError({
+    required Future Function() onRefresh,
+    String? message,
+  }) {
+    setState(() {
+      final id = const Uuid().v4();
+      final fetchErr =
+          BizhubFetchError(onRefresh: onRefresh, message: message, id: id);
+      if (errors.containsKey(errorGroupId)) {
+        errors[errorGroupId]?.add(fetchErr);
+      } else {
+        errors[errorGroupId] = [fetchErr];
+      }
+
+      if (!show) show = true;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return IndexedStack(
+      index: show ? 1 : 0,
+      children: [
+        widget.child,
+        Scaffold(
+          appBar: AppBar(
+            toolbarHeight: 0,
+            backgroundColor: Colors.transparent,
+            elevation: 0.0,
+          ),
+          body: Stack(
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 15.0, vertical: 10.0),
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                        colors: [Color(0xffF7F8FA), Color(0xffE5EBF4)],
+                        stops: [0.0, 1.0],
+                        transform: GradientRotation(math.pi / 4))),
+                child: Column(
+                  children: [
+                    Expanded(
+                        child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Image(
+                          fit: BoxFit.fill,
+                          width: 250.0,
+                          height: 250.0,
+                          image: AssetImage("assets/images/khaby.png"),
+                        ),
+                        const SizedBox(
+                          height: 40.0,
+                        ),
+                        Column(
+                          children: [
+                            const Text(
+                              "Oops!",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 30.0,
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20.0,
+                            ),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.6,
+                              child: const Text(
+                                "No internet connection found, check your connection.",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 16.0,
+                                    color: Color.fromRGBO(110, 117, 123, 1)),
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    )),
+                    PrimaryButton(
+                        onPressed: tryAgain,
+                        // disabled: loading,
+                        // loading: loading,
+                        child: "Try Again")
+                  ],
+                ),
+              ),
+              if (loading)
+                Positioned(
+                    top: 0,
+                    left: 0,
+                    child: Container(
+                      color: const Color.fromARGB(255, 255, 247, 0),
+                      alignment: Alignment.center,
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height,
+                      child: const CircularProgressIndicator(),
+                    )),
+            ],
+          ),
+        )
+      ],
+    );
+  }
+}

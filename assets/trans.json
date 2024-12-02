@@ -1,0 +1,22 @@
+{
+  "en": {
+    "newProductPost": "{Apple Turkmenistan} has expanded its catalog with a new product.",
+    "setDiscountProductPost": "{Apple Turkmenistan} is offering {23}% discount on '{Original iPhone 13 Pro 128 GB with a 12 MP camera}'. {7} days left.",
+    "removeDiscountProductPost": "{Apple Turkmenistan} has removed {23}% discount on '{Original iPhone 13 Pro 128 GB with a 12 MP camera}'."
+  },
+  "ru": {
+    "newProductPost": "{Apple Turkmenistan} пополнил свой каталог новым товаром.",
+    "setDiscountProductPost": "{Apple в Туркменистане} предлагает скидку {23}% на '{Оригинальный iPhone 13 Pro 128 ГБ с камерой 12 Мп}'. Осталось 7 дней.",
+    "removeDiscountProductPost": "{Apple Turkmenistan} отменил скидку {23}% на '{Оригинальный iPhone 13 Pro 128 ГБ с камерой 12 Мп}'."
+  },
+  "tm": {
+    "newProductPost": "{seller} täze haryt bilen katalogyny giňeltdi.",
+    "setDiscountProductPost": "{seller} {product} harydyna {discount}% arzanladyş hödürleýär. {day} gün galdy.",
+    "removeDiscountProductPost": "{seller} {product} harydyndaky {discount}% arzanladyşy ýatyrdy."
+  },
+  "tr": {
+    "newProductPost": "{Apple Turkmenistan}, kataloğunu yeni bir ürünle genişletti.",
+    "setDiscountProductPost": "{Apple Türkmenistan}, '{Orijinal iPhone 13 Pro 128 GB, 12 MP kameralı}' ürününde {23}% indirim sunuyor. {7} gün kaldı.",
+    "removeDiscountProductPost": "{Apple Türkmenistan}, '{12 MP kameralı Orijinal iPhone 13 Pro 128 GB}' ürününde {23}% indirimi kaldırdı."
+  }
+}

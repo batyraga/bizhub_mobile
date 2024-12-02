@@ -1,0 +1,201 @@
+name: bizhub
+description: Bizhub
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.8+8
+
+environment:
+  sdk: ">=3.4.3 <4.0.0"
+  flutter: 3.22.2
+
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+  provider: ^6.0.3
+  google_fonts: ^6.2.1
+  flutter_launcher_icons: ^0.14.1
+  qr_flutter: ^4.0.0
+  dotted_border: ^2.0.0+2
+  flutter_native_splash: ^2.2.3
+  flutter_slidable: ^3.1.1
+  focused_menu: ^1.0.5
+  custom_navigation_bar: ^0.8.2
+  easy_localization: ^3.0.1
+  http: ^1.2.2
+  infinite_scroll_pagination: ^4.1.0
+  cached_network_image: ^3.2.1
+  flutter_phoenix: ^1.0.0
+  flutter_svg: ^2.0.16
+  carousel_slider: ^5.0.0
+  smooth_page_indicator: ^1.0.0+2
+  dio: ^5.7.0
+  build_runner: ^2.2.0
+  json_annotation: ^4.6.0
+  json_serializable: ^6.3.1
+  page_transition: ^2.0.9
+  web_socket_channel: ^3.0.1
+  share_plus: ^10.1.2
+  flutter_local_notifications: ^18.0.1
+  firebase_dynamic_links: ^6.0.10
+  firebase_messaging: ^15.1.5
+  convex_bottom_bar: ^3.0.0
+  shimmer: ^3.0.0
+  shared_preferences: ^2.0.15
+  firebase_core: ^3.8.0
+  flutter_countdown_timer: ^4.1.0
+  firebase_auth: ^5.3.3
+  pin_code_fields: ^8.0.1
+  image_picker: ^1.1.2
+  url_launcher: ^6.1.6
+  dropdown_button2: ^2.3.9
+  reactive_forms: ^17.0.1
+  flutter_isolate: ^2.0.4
+  qr_code_scanner: ^1.0.1
+  pinch_zoom: ^2.0.0
+  photo_view: ^0.15.0
+  connectivity_plus: ^6.1.0
+  # shimmer: ^2.0.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^4.0.0
+
+flutter_icons:
+  image_path: "assets/icon.png"
+  adaptive_icon_background: "assets/icon_background.png"
+  adaptive_icon_foreground: "assets/icon_foreground.png"
+  android: true
+
+flutter_native_splash:
+  color: "#FFC700"
+  image: assets/splash-icon.png
+  web: false
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/images/
+    - assets/langs/
+    - assets/svgs/
+    - assets/icon.png
+
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/assets-and-images/#resolution-aware
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/assets-and-images/#from-packages
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  fonts:
+    - family: BizhubIcons
+      fonts:
+        - asset: assets/fonts/icons/BizhubIcons.ttf
+    - family: Urbanist
+      fonts:
+        - asset: assets/fonts/urbanist/bold.ttf
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/nunito/black.ttf
+          weight: 900
+        - asset: assets/fonts/nunito/extraBold.ttf
+          weight: 800
+        - asset: assets/fonts/nunito/bold.ttf
+          weight: 700
+        - asset: assets/fonts/nunito/semiBold.ttf
+          weight: 600
+        - asset: assets/fonts/nunito/medium.ttf
+          weight: 500
+        - asset: assets/fonts/nunito/regular.ttf
+          weight: 400
+        - asset: assets/fonts/nunito/light.ttf
+          weight: 300
+        - asset: assets/fonts/nunito/extraLight.ttf
+          weight: 200
+        # italic
+        - asset: assets/fonts/nunito/blackItalic.ttf
+          weight: 900
+          style: italic
+        - asset: assets/fonts/nunito/extraBoldItalic.ttf
+          weight: 800
+          style: italic
+        - asset: assets/fonts/nunito/boldItalic.ttf
+          weight: 700
+          style: italic
+        - asset: assets/fonts/nunito/semiBoldItalic.ttf
+          weight: 600
+          style: italic
+        - asset: assets/fonts/nunito/mediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/nunito/italic.ttf
+          weight: 400
+          style: italic
+        - asset: assets/fonts/nunito/lightItalic.ttf
+          weight: 300
+          style: italic
+        - asset: assets/fonts/nunito/extraLightItalic.ttf
+          weight: 200
+          style: italic
+    - family: Dosis
+      fonts:
+        - asset: assets/fonts/dosis/extraLight.ttf
+          weight: 200
+        - asset: assets/fonts/dosis/light.ttf
+          weight: 300
+        - asset: assets/fonts/dosis/regular.ttf
+          weight: 400
+        - asset: assets/fonts/dosis/medium.ttf
+          weight: 500
+        - asset: assets/fonts/dosis/semiBold.ttf
+          weight: 600
+        - asset: assets/fonts/dosis/bold.ttf
+          weight: 700
+        - asset: assets/fonts/dosis/extraBold.ttf
+          weight: 800
+    # - family: Lato
+    #   fonts:
+    #     - asset: assets/fonts/lato/black.ttf
+    #     - asset: assets/fonts/lato/bold.ttf
+    #     - asset: assets/fonts/lato/light.ttf
+    #     - asset: assets/fonts/lato/regular.ttf
+    #     - asset: assets/fonts/lato/thin.ttf
+    # - family: LatoItalic
+    #   fonts:
+    #     - asset: assets/fonts/lato/blackItalic.ttf
+    #     - asset: assets/fonts/lato/boldItalic.ttf
+    #     - asset: assets/fonts/lato/italic.ttf
+    #     - asset: assets/fonts/lato/lightItalic.ttf
+    #     - asset: assets/fonts/lato/thinItalic.ttf
+
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/custom-fonts/#from-packages
