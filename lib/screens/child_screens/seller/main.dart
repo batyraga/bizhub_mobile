@@ -206,12 +206,12 @@ class _SellerDetailRoutePageState extends State<SellerDetailRoutePage>
                                     child: ElevatedButton(
                                         onPressed: () {},
                                         style: ElevatedButton.styleFrom(
-                                            primary: Theme.of(context)
+                                            foregroundColor: Theme.of(context)
                                                 .colorScheme
                                                 .primary,
                                             elevation: 0,
                                             shadowColor: Colors.white,
-                                            onPrimary: Colors.white,
+                                            backgroundColor: Colors.white,
                                             shape: RoundedRectangleBorder(
                                                 side: BorderSide(
                                                     color: Theme.of(context)
@@ -399,7 +399,7 @@ Widget _optionsModalBottomSheet(String sellerId, BuildContext context) {
                         children: [
                           SizedBox(
                             width: 200,
-                            child: QrImage(
+                            child: QrImageView(
                               data: generateSellerQrCode(sellerId),
                             ),
                           )

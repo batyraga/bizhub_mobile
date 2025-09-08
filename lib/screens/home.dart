@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final int _pageSize = 10;
   late String culture;
   late Future<List<String>> futureBanners;
-  final CarouselController _bannersController = CarouselController();
+  final CarouselSliderController _bannersController = CarouselSliderController();
   int _activeBannersIndex = 0;
   UniqueKey top5Key = UniqueKey();
   bool hasError = false;

@@ -86,8 +86,8 @@ class _NormalUserProfileState extends State<NormalUserProfile> {
                     minimumSize: const Size.fromHeight(40),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.0)),
-                    onPrimary: Theme.of(context).colorScheme.primary,
-                    primary: Colors.white,
+                    foregroundColor: Theme.of(context).colorScheme.primary,
+                    backgroundColor: Colors.white,
                   ),
                   onPressed: () {
                     Navigator.push(

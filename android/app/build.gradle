@@ -29,7 +29,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion 32
+    compileSdkVersion 34
     // compileSdkVersion flutter.compileSdkVersion
     // compileSdkVersion 33
     ndkVersion flutter.ndkVersion
@@ -52,9 +52,9 @@ android {
         applicationId "com.example.bizhub"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion 20 // flutter.minSdkVersion // 19
+        minSdkVersion 23 // flutter.minSdkVersion // 19
         // minSdkVersion 21
-        targetSdkVersion flutter.targetSdkVersion
+        targetSdkVersion 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
@@ -78,4 +78,6 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "androidx.browser:browser:1.2.0"
     implementation "com.google.android.gms:play-services-auth:19.0.0"
+    implementation platform('com.google.firebase:firebase-bom:32.1.0') // Latest BOM
+    implementation 'com.google.firebase:firebase-auth'
 }

@@ -37,8 +37,8 @@ class PrimaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
-            primary: Theme.of(context).colorScheme.primary,
-            onPrimary: Theme.of(context).colorScheme.onPrimary,
+            foregroundColor: Theme.of(context).colorScheme.primary,
+            backgroundColor: Theme.of(context).colorScheme.onPrimary,
             minimumSize: const Size.fromHeight(45),
             elevation: 0,
             shape: RoundedRectangleBorder(
@@ -95,8 +95,8 @@ class RedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
-            primary: Colors.red,
-            onPrimary: Colors.white,
+            foregroundColor: Colors.red,
+            backgroundColor: Colors.white,
             minimumSize: const Size.fromHeight(45),
             elevation: 0,
             shape: RoundedRectangleBorder(
@@ -153,8 +153,8 @@ class SecondaryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         style: ElevatedButton.styleFrom(
-            primary: Theme.of(context).colorScheme.secondary,
-            onPrimary: Theme.of(context).colorScheme.onSecondary,
+            foregroundColor: Theme.of(context).colorScheme.secondary,
+            backgroundColor: Theme.of(context).colorScheme.onSecondary,
             minimumSize: const Size.fromHeight(45),
             elevation: 0,
             shape: RoundedRectangleBorder(
@@ -623,9 +623,9 @@ class _FavoriteButtonWithCountForSellerState
                     },
               style: ElevatedButton.styleFrom(
                   elevation: 0,
-                  primary: const Color(0xffF6F6F6),
+                  foregroundColor: const Color(0xffF6F6F6),
                   shadowColor: Colors.white,
-                  onPrimary: Colors.black,
+                  backgroundColor: Colors.black,
                   shape: RoundedRectangleBorder(
                       side: const BorderSide(
                           color: Color(0xffE5E5E5),

@@ -253,7 +253,7 @@ Widget _optionsModalBottomSheet(BuildContext context) {
                           children: [
                             SizedBox(
                               width: 200,
-                              child: QrImage(
+                              child: QrImageView(
                                 data: "bizhub by ojo team",
                                 semanticsLabel: "ojo code",
                                 dataModuleStyle: const QrDataModuleStyle(

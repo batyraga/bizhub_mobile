@@ -307,7 +307,7 @@ class _EditSellerProfileRoutePageState
                           ).tr()),
                       TextButton(
                           style: TextButton.styleFrom(
-                            primary: Colors.red,
+                            foregroundColor: Colors.red,
                           ),
                           onPressed: () {
                             Navigator.push(

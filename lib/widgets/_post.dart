@@ -129,7 +129,7 @@ class _CustomIconButtonState extends State<CustomIconButton> {
               },
         style: TextButton.styleFrom(
             backgroundColor: widget.bgColor,
-            primary: Colors.black,
+            foregroundColor: Colors.black,
             minimumSize: Size.zero,
             padding: const EdgeInsets.all(0),
             shape: RoundedRectangleBorder(

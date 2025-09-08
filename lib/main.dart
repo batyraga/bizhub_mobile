@@ -42,13 +42,13 @@ void main() async {
   WidgetsBinding widgetBinding = WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+    // options: DefaultFirebaseOptions.currentPlatform,
   );
 
   await storage.init();
   await api.loadApiAddress();
   await api.init();
-  await notificationService.init();
+  // await notificationService.init();
 
   final initialDynamicLink =
       await FirebaseDynamicLinks.instance.getInitialLink();

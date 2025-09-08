@@ -133,7 +133,7 @@ class _ProductDetailRoutePageState extends State<ProductDetailRoutePage> {
   int _activeProductImageIndex = 0;
   late Future<ProductDetail> futureProduct;
   int _likes = 0;
-  final CarouselController _carouselController = CarouselController();
+  final CarouselSliderController _carouselController = CarouselSliderController();
 
   @override
   void initState() {
@@ -1121,15 +1121,28 @@ class _SetDiscountToProductState extends State<SetDiscountToProduct> {
                     });
                   }
                 },
-                dropdownDecoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5.0),
+                dropdownStyleData: DropdownStyleData(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
                 ),
-                itemHeight: 46,
-                buttonPadding: const EdgeInsets.symmetric(horizontal: 10.0),
-                buttonDecoration: BoxDecoration(
-                  border:
-                      Border.all(color: Theme.of(context).colorScheme.primary),
-                  borderRadius: BorderRadius.circular(5.0),
+                // Replace `itemHeight` with `menuItemStyleData`:
+                menuItemStyleData: MenuItemStyleData(
+                  height: 46.0,
+                ),
+                // Replace `buttonPadding` and `buttonDecoration` with `buttonStyleData`:
+                buttonStyleData: ButtonStyleData(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  decoration: BoxDecoration(
+                    color: const Color.fromRGBO(246, 246, 246, 1),
+                    border: Border.all(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    borderRadius: const BorderRadius.only(
+                      bottomRight: Radius.circular(5.0),
+                      topRight: Radius.circular(5.0),
+                    ),
+                  ),
                 ),
                 items: const [
                   DropdownMenuItem(value: "hour", child: Text("Hour")),

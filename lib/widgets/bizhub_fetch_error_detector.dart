@@ -41,8 +41,9 @@ class _BizhubFetchErrorsState extends State<BizhubFetchErrors> {
     Connectivity().onConnectivityChanged.listen(onChangeConnectivity);
   }
 
-  onChangeConnectivity(ConnectivityResult r) {
-    if (r == ConnectivityResult.none) {
+  void onChangeConnectivity(List<ConnectivityResult> results) {
+    // Check if there is no connectivity in the results list
+    if (results.contains(ConnectivityResult.none)) {
       if (!show) {
         setState(() {
           show = true;
@@ -50,7 +51,27 @@ class _BizhubFetchErrorsState extends State<BizhubFetchErrors> {
         });
       }
     }
+    // else {
+    //   // Handle reconnection if needed
+    //   if (show) {
+    //     setState(() {
+    //       show = false;
+    //       isConnectedInternet = true;
+    //     });
+    //   }
+    // }
   }
+
+  // onChangeConnectivity(ConnectivityResult r) {
+  //   if (r == ConnectivityResult.none) {
+  //     if (!show) {
+  //       setState(() {
+  //         show = true;
+  //         isConnectedInternet = false;
+  //       });
+  //     }
+  //   }
+  // }
 
   void onError() {
     if (!show) {

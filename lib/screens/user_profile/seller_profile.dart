@@ -294,12 +294,12 @@ class _MySellerProfileState extends State<MySellerProfile> {
                                   child: ElevatedButton(
                                       onPressed: editProfile,
                                       style: ElevatedButton.styleFrom(
-                                          primary: Theme.of(context)
+                                          foregroundColor: Theme.of(context)
                                               .colorScheme
                                               .onPrimary,
                                           elevation: 0,
                                           shadowColor: Colors.white,
-                                          onPrimary: Theme.of(context)
+                                          backgroundColor: Theme.of(context)
                                               .colorScheme
                                               .primary,
                                           shape: RoundedRectangleBorder(
@@ -340,9 +340,9 @@ class _MySellerProfileState extends State<MySellerProfile> {
                                         onPressed: () {},
                                         style: ElevatedButton.styleFrom(
                                             elevation: 0,
-                                            primary: const Color(0xffF6F6F6),
+                                            foregroundColor: const Color(0xffF6F6F6),
                                             shadowColor: Colors.white,
-                                            onPrimary: Colors.black,
+                                            backgroundColor: Colors.black,
                                             shape: RoundedRectangleBorder(
                                                 side: const BorderSide(
                                                     color: Color(0xffE5E5E5),

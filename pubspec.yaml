@@ -34,7 +34,7 @@ dependencies:
   easy_localization: ^3.0.1
   http: ^1.2.2
   infinite_scroll_pagination: ^4.1.0
-  cached_network_image: ^3.2.1
+  cached_network_image: ^3.4.1
   flutter_phoenix: ^1.0.0
   flutter_svg: ^2.0.16
   carousel_slider: ^5.0.0

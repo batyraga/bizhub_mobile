@@ -237,9 +237,9 @@ class _HistoryCardState extends State<HistoryCard> {
                           padding: const EdgeInsets.all(0),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(25.0)),
-                          primary: Colors.red,
+                          foregroundColor: Colors.red,
                           elevation: 0,
-                          onPrimary: Colors.white,
+                          backgroundColor: Colors.white,
                           shadowColor: Colors.transparent),
                       onPressed: loading ? null : cancelTransaction,
                       child: Padding(

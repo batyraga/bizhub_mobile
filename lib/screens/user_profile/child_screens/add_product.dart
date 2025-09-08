@@ -544,26 +544,25 @@ class _AddProductAttributesState extends State<AddProductAttributes> {
                                                 f.value = v;
                                               }
                                             },
-                                            dropdownDecoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(5.0),
+                                            dropdownStyleData: DropdownStyleData(
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.circular(5.0),
+                                              ),
                                             ),
-                                            itemHeight: 46,
-                                            buttonPadding:
-                                                const EdgeInsets.symmetric(
-                                                    horizontal: 15.0),
-                                            buttonDecoration: BoxDecoration(
-                                              color: const Color.fromRGBO(
-                                                  246, 246, 246, 1),
-                                              border: Border.all(
-                                                  color: Theme.of(context)
-                                                      .colorScheme
-                                                      .primary),
-                                              borderRadius:
-                                                  const BorderRadius.only(
-                                                bottomRight:
-                                                    Radius.circular(5.0),
-                                                topRight: Radius.circular(5.0),
+                                            menuItemStyleData: MenuItemStyleData(
+                                              height: 46.0,
+                                            ),
+                                            buttonStyleData: ButtonStyleData(
+                                              padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                                              decoration: BoxDecoration(
+                                                color: const Color.fromRGBO(246, 246, 246, 1),
+                                                border: Border.all(
+                                                  color: Theme.of(context).colorScheme.primary,
+                                                ),
+                                                borderRadius: const BorderRadius.only(
+                                                  bottomRight: Radius.circular(5.0),
+                                                  topRight: Radius.circular(5.0),
+                                                ),
                                               ),
                                             ),
                                             items: item.unitsArray

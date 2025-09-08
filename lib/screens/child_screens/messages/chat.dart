@@ -183,7 +183,7 @@ class _ChatRoomRoutePageState extends State<ChatRoomRoutePage> {
                         } else if (s == "copy") {
                           if (item.type == "text") {
                             await Clipboard.setData(
-                                ClipboardData(text: item.content.text));
+                                ClipboardData(text: item.content.text??''));
                           }
                         }
                       },

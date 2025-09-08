@@ -236,7 +236,7 @@ class _EditProfileRoutePageState extends State<EditProfileRoutePage> {
                           ).tr()),
                       TextButton(
                           style: TextButton.styleFrom(
-                            primary: Colors.red,
+                            foregroundColor: Colors.red,
                           ),
                           onPressed: () {
                             Navigator.push(

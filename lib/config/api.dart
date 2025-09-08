@@ -1,4 +1,4 @@
-String url = "192.168.1.107:3000";
+String url = "216.250.13.44:3000";
 
 String apiUrl = "http://$url";
 
